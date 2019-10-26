@@ -11,6 +11,8 @@ app.listen(port, () => {
   console.log("Started");
 });
 
+
+
 app.get("/api/v1/today", async (req, res) => {
   var response = await axios.get("https://nepalipatro.com.np/");
   const $ = cheerio.load(response.data);
@@ -22,5 +24,9 @@ app.get("/api/v1/today", async (req, res) => {
     .toString()
     .replace(/\n/gm, " ");
   console.log(panchanga);
-  res.json({ date, tithi, event, panchanga });
+  res.json({ status: "success", date, tithi, event, panchanga });
 });
+
+app.get("*", (req,res) => {
+    res.json({status : "error",message: "Invalid API Endpoint."})
+})
