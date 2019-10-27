@@ -21,7 +21,8 @@ app.get("/api/v1/today", async (req, res) => {
   var panchanga = $(".panchangaFront")
     .text()
     .toString()
-    .replace(/\n/gm, " ");
+    .replace(/\n/gm, " ")
+    .replace(' आजको पञ्चाङ्ग ', '');
   console.log(panchanga);
   res.json({ status: "success", date, tithi, event, panchanga });
 });
